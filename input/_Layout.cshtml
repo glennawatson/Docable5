@@ -165,7 +165,7 @@
                                     else
                                     {
                                         <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                                            <div id="left-sidebar" tabindex="0" class="sidebar collapse px-0 px-md-3 pt-3">
                                                 @if (IsSectionDefined(SectionNames.Sidebar))
                                                 {
                                                     @await RenderSectionAsync(SectionNames.Sidebar, false)
@@ -192,7 +192,7 @@
                                     }
                                 }
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+                                    <div id="right-sidebar" tabindex="0" class="sidebar px-0 px-md-3 pt-3">
                                         @if (IsSectionDefined(SectionNames.RightSidebar))
                                         {
                                             @await RenderSectionAsync(SectionNames.RightSidebar, false)

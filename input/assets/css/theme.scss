@@ -111,6 +111,7 @@ h1 {
     color: $primary;
     background: -webkit-linear-gradient(darken($mixed, 5%), darken($primary, 5%));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-bottom: $spacer * 0.15;
     margin-bottom: $spacer * 0.5;
@@ -120,6 +121,7 @@ h1 * {
     // Need to remove the text-fill from nested elements
     background-image: none;
     -webkit-background-clip: initial;
+    background-clip: initial;
     -webkit-text-fill-color: initial;
 }
 
@@ -300,7 +302,7 @@ code, code[class*="language-"], pre[class*="language-"] {
         top: 230px;
         bottom: 0;
         left: 0;
-        width: 225px;
+        width: 16.66667%;
         opacity: 0.6;
         transition: opacity 0.5s;
         display: block !important;
