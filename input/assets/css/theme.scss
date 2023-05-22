@@ -469,3 +469,10 @@ a:not([class*="btn"]) {
 a:not([class*="btn"]):hover {
     text-decoration: underline;
 }
+
+.bi {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+    fill: currentcolor;
+}
