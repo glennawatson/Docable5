@@ -462,3 +462,10 @@ code, code[class*="language-"], pre[class*="language-"] {
       width: 100%;
       height: 100%;
   }
+
+a:not([class*="btn"]) {
+    text-decoration: none;
+}
+a:not([class*="btn"]):hover {
+    text-decoration: underline;
+}
