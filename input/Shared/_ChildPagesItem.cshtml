@@ -3,7 +3,7 @@
 
 @{
     string excerpt = Model.GetString(Keys.Excerpt);
-    <div class="p-3 mb-2 bg-light page-box">
+    <div class="p-3 mb-2 page-box">
         <h4>@Html.DocumentLink(Model)</h4>
 
         @if (!string.IsNullOrEmpty(excerpt))
