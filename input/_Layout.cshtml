@@ -221,7 +221,7 @@
                 }
                 else
                 {
-            @if (!Document.GetBool(SiteKeys.NoBreadcrumb))
+            if (!Document.GetBool(SiteKeys.NoBreadcrumb))
                     {
             <div id="titlebar" class="py-4">
                 <div class="container-xl">
@@ -231,7 +231,7 @@
                                 <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
                                     @if (IsSectionDefined(SectionNames.Breadcrumbs))
                                     {
-                                        @await RenderSectionAsync(SectionNames.Breadcrumbs, false)
+                                    @await RenderSectionAsync(SectionNames.Breadcrumbs, false)
                                     }
                                     else
                                     {
@@ -241,7 +241,7 @@
                                 <div class="text-white m-0 text-break">
                                     @if (IsSectionDefined(SectionNames.Title))
                                     {
-                                        @await RenderSectionAsync(SectionNames.Title, false)
+                                    @await RenderSectionAsync(SectionNames.Title, false)
                                     }
                                     else
                                     {
