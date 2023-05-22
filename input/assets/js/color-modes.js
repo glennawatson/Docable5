@@ -1,5 +1,5 @@
 /*!
- * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
+ * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/docs/5.3/customize/color-modes/)
  * Copyright 2011-2023 The Bootstrap Authors
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  */
@@ -14,7 +14,7 @@
       return storedTheme
     }
 
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    return 'auto'
   }
 
   const setTheme = function (theme) {
