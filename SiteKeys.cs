@@ -55,6 +55,11 @@
         public const string BreadcrumbTitle = nameof(BreadcrumbTitle); //
 
 		/// <summary>
+		/// Set to <c>true</c> to hide the Breadcrumb area for a given page.
+		/// </summary>
+		public const string NoBreadcrumb = nameof(NoBreadcrumb);
+
+		/// <summary>
 		/// A more specific editing link that overrides <see cref="EditRoot"/> if needed.
 		/// </summary>
 		public const string EditLink = nameof(EditLink);
