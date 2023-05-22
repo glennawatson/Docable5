@@ -4,7 +4,7 @@
         IDocument topicDocument = OutputPages[$"news/topics/{post.GetString("topic")}/index.html"].First();
         string excerpt = post.GetString(Keys.Excerpt);
         <div>
-            <div class="p-3 mb-2 bg-light page-box">
+            <div class="p-3 mb-2 page-box">
                 <h4>@Html.DocumentLink(post)</h4>
                 <div class="small text-black-50">
                     @post.GetDateTime("Published").ToLongDateString() in
