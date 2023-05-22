@@ -24,7 +24,7 @@
                 @await Html.PartialAsync("_SidebarItem", (document, children.Count > 0))
             }
 
-            @if (children.Count > 0)
+            if (children.Count > 0)
             {
                 <div class="sidebar-nav-children">
                     @foreach (IDocument child in children)
@@ -39,7 +39,7 @@
                             @await Html.PartialAsync("_SidebarItem", (child, children2.Count > 0))
                         }
                         
-                        @if (children2.Count > 0)
+                        if (children2.Count > 0)
                         {
                             <div class="sidebar-nav-children">
                                 @foreach (IDocument child2 in children2)
