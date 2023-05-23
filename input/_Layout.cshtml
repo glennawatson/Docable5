@@ -255,8 +255,33 @@
             </div>
                     }
                 }
-
-            <!-- Body -->
+            @if (Document.GetBool(SiteKeys.IsBlog))
+            {
+            <!-- Blog Content -->
+            <div class="container">
+                <div class="row">
+                <div id="content" class="col-md-12">
+                    @RenderBody()
+                    @if (isPost)
+                    {
+                    @Html.Partial("_post-after-content")
+                    }
+                    else if (isPage)
+                    {
+                    @Html.Partial("_page-after-content")
+                    }
+                    @Html.Partial("_common-after-content")
+                </div>
+                </div>
+                @if (isPost)
+                {
+                @Html.Partial("_post-comments")
+                }
+            </div>
+            }
+            else
+            {
+            <!-- Document Body -->
             <div class="flex-grow-1 d-flex flex-column">
                 @if (Document.GetBool(SiteKeys.NoContainer))
                     {
@@ -327,9 +352,10 @@
                 </div>
                     }
             </div>
+            }
         </div>
     </div>
-
+            
     <!-- Footer -->
     <div id="footer" class="p-3">
         <div class="container-xl">

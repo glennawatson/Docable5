@@ -74,5 +74,10 @@
 		/// A Google Fonts (or other) URL for use in a <c>link</c> element in the header.
 		/// </summary>
 		public const string FontLink = nameof(FontLink);
+
+		/// <summary>
+		/// Set to <c>true</c> to set the content to a blog for a given page.
+		/// </summary>
+		public const string IsBlog = nameof(IsBlog);
     }
 }
