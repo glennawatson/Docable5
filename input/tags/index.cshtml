@@ -17,7 +17,7 @@ ArchiveTitle: => GetString("GroupKey")
   <div class="container-sm-height">
     <div class="row row-sm-height">
       <div class="col-md-6 right-border col-sm-height">
-        @Html.Partial("../shared/_blogPosts", Document)
+        @Html.Partial("_blogPosts", Document)
       </div>
       <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
         @foreach (IDocument tag in OutputPages.Get("tags/index.html").GetChildren().OrderByDescending(x => x.GetChildren().Count()))
