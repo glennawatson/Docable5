@@ -79,5 +79,15 @@
 		/// Set to <c>true</c> to set the content to a blog for a given page.
 		/// </summary>
 		public const string IsBlog = nameof(IsBlog);
+
+        /// <summary>
+		/// Set to <c>true</c> to set the content to a post for a given blog.
+		/// </summary>
+		public const string IsPost = nameof(IsPost);
+
+        /// <summary>
+		/// Set to <c>true</c> to set the content to a post for a given blog.
+		/// </summary>
+		public const string IsPage = nameof(IsPage);
     }
 }

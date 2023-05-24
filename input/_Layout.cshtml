@@ -1,5 +1,9 @@
 ﻿<!DOCTYPE html>
 <html data-bs-theme="auto">
+@{
+  var isPost = Document.GetBool("IsPost") && !Document.GetBool("IsPostArchive");
+  var isPage = Document.GetBool("IsPage");
+}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -7,11 +11,11 @@
 
     <link href="@Context.GetLink("/assets/bootstrap/bootstrap.css")" rel="stylesheet" />
     @{
-            string fontLink = Document.GetString(SiteKeys.FontLink);
-            if (!fontLink.IsNullOrWhiteSpace())
-            {
+        string fontLink = Document.GetString(SiteKeys.FontLink);
+        if (!fontLink.IsNullOrWhiteSpace())
+        {
         <link href="@Html.Raw(fontLink)" rel="stylesheet" data-no-mirror>
-            }
+        }
     }
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
     <link href="@Context.GetLink("/assets/css/theme.css")" rel="stylesheet" />
@@ -19,20 +23,20 @@
 
     <!-- Lunr search -->
     @if (Context.GetBool(WebKeys.GenerateSearchIndex))
-        {
+    {
     <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pako@2.0.3/dist/pako_inflate.min.js"></script>
     <script src="@(Context.GetLink(Context.GetPath(WebKeys.SearchScriptPath, "search.js")))"></script>
-        }
+    }
 
     @await RenderSectionAsync(SectionNames.Head, false)
 
     @await Html.PartialAsync("_Head")
 
     @{
-            string title = @Document.ContainsKey(Keys.Title)
-                ? $"{Document.GetString(SiteKeys.SiteTitle)} - {Document.GetString(Keys.Title)}"
-                : Document.GetString(SiteKeys.SiteTitle);
+        string title = @Document.ContainsKey(Keys.Title)
+        ? $"{Document.GetString(SiteKeys.SiteTitle)} - {Document.GetString(Keys.Title)}"
+        : Document.GetString(SiteKeys.SiteTitle);
     }
     <title>@title</title>
 </head>
@@ -129,35 +133,35 @@
             </div>
         </div>
         @if (IsSectionDefined(SectionNames.Splash))
-            {
+        {
         @await RenderSectionAsync(SectionNames.Splash, false)
-            }
+        }
         @await Html.PartialAsync("_Splash")
         @{
-                string section = null;
-                if (Context.GetPath(DocsKeys.ApiPath).ContainsDescendant(Document.Destination))
-                {
-                    // Special case for the API since the ApiPath key might be nested
-                    section = Context.GetString(DocsKeys.ApiPath);
-                }
-                else if (Document.Destination.Segments.Length > 1)
-                {
-                    // If it's not in the ApiPath, but it does have segments, use the first segment
-                    section = Document.Destination.Segments[0].ToString();
-                }
-                IDocument root = OutputPages.Get(section + "/index.html");
+            string section = null;
+            if (Context.GetPath(DocsKeys.ApiPath).ContainsDescendant(Document.Destination))
+            {
+                // Special case for the API since the ApiPath key might be nested
+                section = Context.GetString(DocsKeys.ApiPath);
+            }
+            else if (Document.Destination.Segments.Length > 1)
+            {
+                // If it's not in the ApiPath, but it does have segments, use the first segment
+                section = Document.Destination.Segments[0].ToString();
+            }
+            IDocument root = OutputPages.Get(section + "/index.html");
         }
         <div class="flex-grow-1 d-flex flex-column">
             @if (!Document.GetBool(SiteKeys.NoTitle))
-                {
-                    <!-- Titlebar -->
+            {
+                <!-- Titlebar -->
             <div id="titlebar" class="py-4">
                 <div class="container-xl">
                     <div class="row">
                         <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
                             <div class="flex-grow-1">
                                 @if (!Document.GetBool(SiteKeys.NoBreadcrumb))
-                                {
+                                    {
                                 <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
                                     @if (IsSectionDefined(SectionNames.Breadcrumbs))
                                             {
@@ -168,30 +172,30 @@
                                                 await Html.RenderPartialAsync("_Breadcrumbs", root);
                                             }
                                 </div>
-                                }
+                                    }
                                 <div class="text-white m-0 text-break title">
                                     @if (IsSectionDefined(SectionNames.Title))
-                                            {
+                                        {
                                     @await RenderSectionAsync(SectionNames.Title, false)
-                                            }
-                                            else
-                                            {
-                                                await Html.RenderPartialAsync("_Title", root);
-                                            }
+                                        }
+                                        else
+                                        {
+                                            await Html.RenderPartialAsync("_Title", root);
+                                        }
                                 </div>
                                 @if (IsSectionDefined(SectionNames.Subtitle))
-                                        {
+                                    {
                                 @await RenderSectionAsync(SectionNames.Subtitle, false)
-                                        }
+                                    }
                             </div>
                             @if (!Document.GetBool(SiteKeys.NoSidebar))
-                                    {
+                                {
                             <div class="navbar navbar-expand-md navbar-light p-0">
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                             </div>
-                                    }
+                                }
                         </div>
                     </div>
                 </div>
@@ -202,27 +206,27 @@
                 <div class="container-xl">
                     <div class="row">
                         @if (Document.GetBool(SiteKeys.NoSidebar))
-                                {
+                            {
                         <div class="offset-lg-2 col-12 col-lg-8">
                         </div>
-                                }
-                                else
-                                {
+                            }
+                            else
+                            {
                         <div class="col-md-3 col-lg-2">
                         </div>
                         <div class="col-md-9 col-lg-8">
                         </div>
-                                }
+                            }
                         <div class="col-lg-2 d-none d-lg-block">
                         </div>
                     </div>
                 </div>
             </div>
-                }
-                else
+            }
+            else
+            {
+                if (!Document.GetBool(SiteKeys.NoBreadcrumb))
                 {
-            if (!Document.GetBool(SiteKeys.NoBreadcrumb))
-                    {
             <div id="titlebar" class="py-4">
                 <div class="container-xl">
                     <div class="row">
@@ -230,97 +234,100 @@
                             <div class="flex-grow-1">
                                 <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
                                     @if (IsSectionDefined(SectionNames.Breadcrumbs))
-                                    {
+                                            {
                                     @await RenderSectionAsync(SectionNames.Breadcrumbs, false)
-                                    }
-                                    else
-                                    {
-                                        await Html.RenderPartialAsync("_Breadcrumbs", root);
-                                    }
+                                            }
+                                            else
+                                            {
+                                                await Html.RenderPartialAsync("_Breadcrumbs", root);
+                                            }
                                 </div>
                                 <div class="text-white m-0 text-break">
                                     @if (IsSectionDefined(SectionNames.Title))
-                                    {
+                                            {
                                     @await RenderSectionAsync(SectionNames.Title, false)
-                                    }
-                                    else
-                                    {
-                                        await Html.RenderPartialAsync("_Title", root);
-                                    }
+                                            }
+                                            else
+                                            {
+                                                await Html.RenderPartialAsync("_Title", root);
+                                            }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                    }
                 }
-            @if (Document.GetBool(SiteKeys.IsBlog))
-            {
-            <!-- Blog Content -->
-            <div class="container">
-                <div class="row">
-                <div id="content" class="col-md-12">
-                    @RenderBody()
-                    @if (isPost)
-                    {
-                    @Html.Partial("_post-after-content")
-                    }
-                    else if (isPage)
-                    {
-                    @Html.Partial("_page-after-content")
-                    }
-                    @Html.Partial("_common-after-content")
-                </div>
-                </div>
-                @if (isPost)
-                {
-                @Html.Partial("_post-comments")
-                }
-            </div>
             }
-            else
-            {
+
             <!-- Document Body -->
             <div class="flex-grow-1 d-flex flex-column">
                 @if (Document.GetBool(SiteKeys.NoContainer))
-                    {
+                {
                 <div id="content">
                     @* Render the body without indenting in case it contains things like directives *@
                     @RenderBody()
                 </div>
-                    }
-                    else
-                    {
+                }
+                else
+                {
                 <div class="container-xl flex-grow-1 d-flex flex-column">
                     <div class="row flex-grow-1 align-items-stretch">
                         @{
-                                    if (root == null || Document.GetBool(SiteKeys.NoSidebar))
+                                if (root == null || Document.GetBool(SiteKeys.NoSidebar))
+                                {
+                                    if (IsSectionDefined(SectionNames.Sidebar))
                                     {
-                                        if (IsSectionDefined(SectionNames.Sidebar))
-                                        {
-                                            IgnoreSection(SectionNames.Sidebar);
-                                        }
+                                        IgnoreSection(SectionNames.Sidebar);
+                                    }
 
                             <div id="content" class="offset-lg-2 col-12 col-lg-8 p-4 pt-md-0">
                                 @* Render the body without indenting in case it contains things like directives *@
                                 @RenderBody()
                             </div>
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
                             <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
                                 <div id="left-sidebar" tabindex="0" class="sidebar collapse px-0 px-md-3 pt-3">
                                     @if (IsSectionDefined(SectionNames.Sidebar))
-                                                {
+                                            {
                                     @await RenderSectionAsync(SectionNames.Sidebar, false)
-                                                }
-                                                else
+                                            }
+                                            else
+                                            {
+                                                await Html.RenderPartialAsync("_Sidebar", root);
+                                            }
+                                </div>
+                            </div>
+                                    if (Document.GetBool(SiteKeys.IsBlog))
+                                    {
+ <!-- Blog Content -->
+                            <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0">
+                                <div class="container">
+                                    <div class="row">
+                                        <div id="content" class="col-md-12">
+                                            @RenderBody()
+                                            @if (isPost)
+                                                        {
+                                            @Html.Partial("_post-after-content")
+                                                        }
+                                                        else if (isPage)
+                                                        {
+                                            @Html.Partial("_page-after-content")
+                                                        }
+                                            @Html.Partial("_common-after-content")
+                                        </div>
+                                    </div>
+                                    @if (isPost)
                                                 {
-                                                    await Html.RenderPartialAsync("_Sidebar", root);
+                                    @Html.Partial("_post-comments")
                                                 }
                                 </div>
                             </div>
+                                    }
+                                    else
+                                    {
                             <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0">
                                 @* Render the body without indenting in case it contains things like directives *@
                                 @RenderBody()
@@ -335,27 +342,27 @@
                                             }
                             </div>
                                     }
+                                }
                         }
                         <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                             <div id="right-sidebar" tabindex="0" class="sidebar px-0 px-md-3 pt-3">
                                 @if (IsSectionDefined(SectionNames.RightSidebar))
-                                        {
+                                    {
                                 @await RenderSectionAsync(SectionNames.RightSidebar, false)
-                                        }
-                                        else
-                                        {
-                                            await Html.RenderPartialAsync("_RightSidebar");
-                                        }
+                                    }
+                                    else
+                                    {
+                                        await Html.RenderPartialAsync("_RightSidebar");
+                                    }
                             </div>
                         </div>
                     </div>
                 </div>
-                    }
+                }
             </div>
-            }
         </div>
     </div>
-            
+
     <!-- Footer -->
     <div id="footer" class="p-3">
         <div class="container-xl">
