@@ -11,21 +11,38 @@ ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"posts/index.html" : $"posts/page/{GetInt("Index")}.html"
 ArchiveTitle: => GetString("Title")
 ---
-@foreach(IGrouping<int, IDocument> group in Document
-                                            .GetChildren()
-                                            .GroupBy(x => x.GetDateTime(WebKeys.Published).Year)
-                                            .OrderByDescending(x => x.Key))
+@foreach(IGrouping<(int, string), IDocument> group in Document
+                            .GetChildren()
+                            .GroupBy(x => (x.GetDateTime(WebKeys.Published).Year, x.GetString("Tags")))
+                            .OrderByDescending(x => x.Key.Item1).ThenBy(y => y.Key.Item2))
 {
-<h1 class="bg-dark text-light p-2">@group.Key</h1>
+<h1 class="p-2">@group.Key.Item1 - @group.Key.Item2</h1>
   foreach (IDocument post in group)
   {
-<div class="post-preview">
-    <h3 class="post-title">@Html.DocumentLink(post)</h3>
-    @if(post.ContainsKey("Lead"))
-      {
-    <div class="post-subtitle">@post.GetString("Lead")</div>
-      }
-    <p class="post-meta">Published on @post.GetDateTime(WebKeys.Published).ToLongDateString(Context)</p>
+<div>
+    @if(post.GetBool("ShowFullBlog"))
+    {
+        <div>
+            @if(post.ContainsKey("Author"))
+            {
+                <div class="post-subtitle"><i class="fa fa-user"></i> Author : @post.GetString("Author")</div>
+            }
+            @if(post.ContainsKey("Tags"))
+            {
+                <div class="post-subtitle"><i class="fa fa-bookmark"></i> Category : @post.GetString("Tags")</div>
+            }
+            <p class="post-meta"><i class="fa fa-calendar"></i> Published on : @post.GetDateTime(WebKeys.Published).ToLongDateString(Context)</p>
+        </div>
+        <div>
+            @await Html.PartialAsync("_postFull", post)
+        </div>
+    }
+    else
+    {
+        <div>
+            @await Html.PartialAsync("_post", post)
+        </div>
+    }
 </div>
   }
 }

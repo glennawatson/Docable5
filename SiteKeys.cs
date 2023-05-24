@@ -79,5 +79,10 @@
 		/// Set to <c>true</c> to set the content to a blog for a given page.
 		/// </summary>
 		public const string IsBlog = nameof(IsBlog);
+
+		/// <summary>
+		/// Set to <c>true</c> to set the content to show the full blog for a given page.
+		/// </summary>
+		public const string ShowFullBlog = nameof(ShowFullBlog);
     }
 }
