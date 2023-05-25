@@ -1,21 +1,17 @@
-﻿@* Override in your own input directory to customize the appearance of items in the full posts list *@
-@* The document for the child page is passed in as the model *@
+﻿@model IDocument
 
 @{
-    StringBuilder filePath = new StringBuilder();
-    filePath.Append("output/").Append(Context.GetLink(Model)).Append(".html");
-    XDocument doc = XDocument.Load(filePath.ToString());
-    var content = doc.Descendants("div")
-                    .Where(d => d.Attribute("id")?.Value == "content")
-                    .FirstOrDefault()?.Value;
-}
+    System.Text.StringBuilder filePath = new System.Text.StringBuilder();
+    filePath.Append("output").Append(Context.GetLink(Model)).Append(".html");
+    var c = System.IO.File.ReadAllText(filePath.ToString());
+    var start = c.IndexOf("<!-- Blog Content Start -->");
+    var end = c.IndexOf("<!-- Blog Content End -->");
+    c = c.Substring(start, end - start);
 
-@if (!string.IsNullOrEmpty(content))
-{
-    <div class="page-box">
-        <h4>@Html.DocumentLink(Model)</h4>
+    @if (!string.IsNullOrEmpty(c))
+    {
         <div class="font-size-sm">
-            @Html.Raw(content)
+            @Html.Raw(c)
         </div>
-    </div>
+    }
 }

@@ -1,3 +1,4 @@
+NoTitle: true
 IsBlog: true
 ShowInNavbar: => GetInt("Index") <= 1
 Order: => GetInt("PostOrder")
@@ -22,19 +23,20 @@ ArchiveTitle: => GetString("Title")
 <div>
     @if(post.GetBool("ShowFullBlog"))
     {
-        <div>
+        <div class="page-box">
+                    <h2 class="ms-5 post-title"> @Html.DocumentLink(post)</h2>
             @if(post.ContainsKey("Author"))
             {
-                <div class="post-subtitle"><i class="fa fa-user"></i> Author : @post.GetString("Author")</div>
+                        <div class="ms-5 post-subtitle"> <i class="fa fa-user"></i> Author : @post.GetString("Author")</div>
             }
             @if(post.ContainsKey("Tags"))
             {
-                <div class="post-subtitle"><i class="fa fa-bookmark"></i> Category : @post.GetString("Tags")</div>
+                        <div class="ms-5 post-subtitle"> <i class="fa fa-bookmark"></i> Category : @post.GetString("Tags")</div>
             }
-            <p class="post-meta"><i class="fa fa-calendar"></i> Published on : @post.GetDateTime(WebKeys.Published).ToLongDateString(Context)</p>
-        </div>
-        <div>
-            @await Html.PartialAsync("_postFull", post)
+                    <p class="ms-5 post-meta"> <i class="fa fa-calendar"></i> Published on : @post.GetDateTime(WebKeys.Published).ToLongDateString(Context)</p>
+            <div>
+                @await Html.PartialAsync("_postFull", post)
+            </div>
         </div>
     }
     else
