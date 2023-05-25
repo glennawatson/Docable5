@@ -476,3 +476,65 @@ a:not([class*="btn"]):hover {
     vertical-align: -.125em;
     fill: currentcolor;
 }
+
+.branding-title {
+    color: #319af3;
+    font-size: 51px;
+    font-weight: 300;
+    margin-top: 10px
+}
+
+.branding-caption {
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.45em;
+    font-weight: 300;
+    font-size: 21px
+}
+
+.branding-button {
+    border-radius: 30px;
+    border: 1px solid #319af3;
+    transition: all .3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 7px 15px
+}
+
+.branding-button:hover {
+    transition: all .3s ease;
+    border-color: #319af3;
+    background-color: #319af3;
+    text-decoration: none;
+    color: #fff
+}
+
+.branding-subheader {
+    font-size: 25px;
+    color: #319af3
+}
+
+.branding-code {
+    font-size: 14px;
+    line-height: 1.8em;
+    margin-top: 20px;
+    overflow: hidden
+}
+
+@media (max-width:767px) {
+    .branding-image {
+        max-width: 40%
+    }
+}
+
+.branding {
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+
+@media (max-width:767px) {
+    .branding {
+        margin-top: 15px
+    }
+}

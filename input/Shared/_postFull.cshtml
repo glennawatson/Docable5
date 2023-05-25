@@ -1,7 +1,7 @@
 ﻿@model IDocument
 
 @{
-    System.Text.StringBuilder filePath = new System.Text.StringBuilder();
+    var filePath = new System.Text.StringBuilder();
     filePath.Append("output").Append(Context.GetLink(Model)).Append(".html");
     var c = System.IO.File.ReadAllText(filePath.ToString());
     var start = c.IndexOf("<!-- Blog Content Start -->");
