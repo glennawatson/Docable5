@@ -211,6 +211,8 @@ code, code[class*="language-"], pre[class*="language-"] {
 }
 
 #content {
+    min-height: 105vh;
+
     ul:not([class]), ul[class=""] {
         li {
             padding-top: $spacer * .25;
