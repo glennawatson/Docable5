@@ -3,15 +3,27 @@
 @{
     var filePath = new System.Text.StringBuilder();
     filePath.Append("output").Append(Context.GetLink(Model)).Append(".html");
-    var c = System.IO.File.ReadAllText(filePath.ToString());
-    var start = c.IndexOf("<!-- Blog Content Start -->");
-    var end = c.IndexOf("<!-- Blog Content End -->");
-    c = c.Substring(start, end - start);
+    var blogContent = System.IO.File.ReadAllText(filePath.ToString());
+    var start = blogContent.IndexOf("<!-- Blog Content Start -->");
+    var end = blogContent.IndexOf("<!-- Blog Content End -->");
+    blogContent = blogContent.Substring(start, end - start);
 
-    @if (!string.IsNullOrEmpty(c))
+    @if (!string.IsNullOrEmpty(blogContent))
     {
-        <div class="font-size-sm">
-            @Html.Raw(c)
+        <div class="page-box">
+            <h2 class="ms-5 post-title"> @Html.DocumentLink(Model)</h2>
+            @if (Model.ContainsKey("Author"))
+            {
+                <div class="ms-5 post-subtitle"> <i class="fa fa-user"></i> Author : @Model.GetString("Author")</div>
+            }
+            @if (Model.ContainsKey("Tags"))
+            {
+                <div class="ms-5 post-subtitle"> <i class="fa fa-bookmark"></i> Category : @Model.GetString("Tags")</div>
+            }
+            <p class="ms-5 post-meta"> <i class="fa fa-calendar"></i> Published on : @Model.GetDateTime(WebKeys.Published).ToLongDateString(Context)</p>
+            <div>
+                @Html.Raw(blogContent)
+            </div>
         </div>
     }
 }
