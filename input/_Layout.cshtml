@@ -296,7 +296,14 @@
                                             }
                                             else
                                             {
-                                                await Html.RenderPartialAsync("_Sidebar", root);
+                                                if (Document.GetBool(SiteKeys.IsBlog))
+                                                {
+                                                    await Html.RenderPartialAsync("_postSidebar", root);
+                                                }
+                                                else
+                                                {
+                                                    await Html.RenderPartialAsync("_Sidebar", root);
+                                                }
                                             }
                                 </div>
                             </div>
