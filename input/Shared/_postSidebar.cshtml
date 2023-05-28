@@ -14,9 +14,9 @@
             {
                 string tags = doc.GetString("Tags");
                 string linkText = tags.Replace(" ", "-").Replace("'", string.Empty);
-                ViewData["TagViews"] = tagViews.Where(x => x.GetString("Tags").Contains(tags));
+                var currentTags = tagViews.Where(x => x.GetString("Tags").Contains(tags));
         <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
-            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Categories?{linkText}")">@linkText</a>
+            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Categories?category={linkText}")">@linkText</a>
         </div>
             }
         }
@@ -36,11 +36,10 @@
         });
         foreach (IDocument doc in publishedViews)
         {
-            string linkText = doc.GetDateTime(WebKeys.Published).ToString("MMMM, yyyy");
-            ViewData["PublishedViews"] = publishedViews.Where(x => x.GetDateTime(WebKeys.Published).ToString("MMMM, yyyy").Contains(linkText));
-
+            string linkText = doc.GetDateTime(WebKeys.Published).ToString("MMMM,yyyy");
+            var currentPublished = publishedViews.Where(x => x.GetDateTime(WebKeys.Published).ToString("MMMM,yyyy").Contains(linkText));
         <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
-            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Archive?{linkText}")">@linkText</a>
+            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Archive?archive={linkText}")">@linkText</a>
         </div>
         }
 
@@ -57,9 +56,8 @@
                 string author = doc.GetString("Author");
                 string linkText = author.Replace(" ", "-").Replace("'", string.Empty);
                 var currentAuthor = authorViews.Where(x => x.GetString("Author").Contains(author));
-                ViewData["AuthorViews"] = currentAuthor;
         <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
-            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Authors?{linkText}")">@linkText</a>
+            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Authors?author={linkText}")">@linkText</a>
         </div>
             }
         }
