@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="@Context.GetLink("/assets/bootstrap/bootstrap.css")" rel="stylesheet" />
+    <link href="@Context.GetLink("./assets/bootstrap/bootstrap.css")" rel="stylesheet" />
     @{
         string fontLink = Document.GetString(SiteKeys.FontLink);
         if (!fontLink.IsNullOrWhiteSpace())
@@ -18,8 +18,8 @@
         }
     }
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-    <link href="@Context.GetLink("/assets/css/theme.css")" rel="stylesheet" />
-    <link href="@Context.GetLink("/assets/css/styles.css")" rel="stylesheet" />
+    <link href="@Context.GetLink("./assets/css/theme.css")" rel="stylesheet" />
+    <link href="@Context.GetLink("./assets/css/styles.css")" rel="stylesheet" />
 
     <!-- Lunr search -->
     @if (Context.GetBool(WebKeys.GenerateSearchIndex))
