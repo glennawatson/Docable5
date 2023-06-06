@@ -1,5 +1,4 @@
-﻿@model IDocument
-
+﻿@inherits StatiqRazorPage<IDocument>
 @{
     var filePath = new System.Text.StringBuilder();
     filePath.Append("output").Append(Context.GetLink(Model)).Append(".html");

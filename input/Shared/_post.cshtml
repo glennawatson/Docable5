@@ -1,5 +1,4 @@
-@model IDocument
-
+@inherits StatiqRazorPage<IDocument>
 @{
   string excerpt = Model.GetString(Keys.Excerpt);
 }
