@@ -13,8 +13,10 @@ ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"posts/index.html" : $"posts/page/{GetInt("Index")}.html"
 ArchiveTitle: => GetString("Title")
 ---
+        @inherits StatiqRazorPage<IDocument>
 @{
-            foreach (IDocument doc in OutputPages
+            foreach (var doc in Model
+                .GetChildren()
                 .Where(x => x.GetBool(SiteKeys.IsBlog) && x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey("Tags"))
                 .OrderBy(x => x.GetString("Tags"))
                 .ThenByDescending(x => x.GetString(WebKeys.Published)))
@@ -31,8 +33,8 @@ ArchiveTitle: => GetString("Title")
     </div>
             }
 
-            IDocument newer = Model.GetDocument(Keys.Previous);
-            IDocument older = Model.GetDocument(Keys.Next);
+            var newer = Model.GetDocument(Keys.Previous);
+            var older = Model.GetDocument(Keys.Next);
 
             if (older != null || newer != null)
             {

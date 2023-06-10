@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> parameters = Document.GetDocumentList(CodeAnalysisKeys.Parameters);
 	IReadOnlyList<ReferenceComment> paramComments = Document.GetList<ReferenceComment>(CodeAnalysisKeys.Params);
@@ -15,7 +16,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach (IDocument parameter in parameters)
+					@foreach (var parameter in parameters)
 					{
 						<tr>
 							<td>@parameter.GetString(CodeAnalysisKeys.Name)</td>

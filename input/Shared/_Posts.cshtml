@@ -1,8 +1,9 @@
-﻿<div>
-    @foreach (IDocument post in Document.GetChildren())
+﻿@inherits StatiqRazorPage<IDocument>
+<div>
+    @foreach (var post in Document.GetChildren())
     {
-        IDocument topicDocument = OutputPages[$"news/topics/{post.GetString("topic")}/index.html"].First();
-        string excerpt = post.GetString(Keys.Excerpt);
+        var topicDocument = OutputPages[$"news/topics/{post.GetString("topic")}/index.html"].First();
+        var excerpt = post.GetString(Keys.Excerpt);
         <div>
             <div class="p-3 mb-2 page-box">
                 <h4>@Html.DocumentLink(post)</h4>
@@ -19,8 +20,8 @@
         </div>
     }
     @{
-        IDocument older = Document.GetDocument(Keys.Next);
-        IDocument newer = Document.GetDocument(Keys.Previous);
+        var older = Document.GetDocument(Keys.Next);
+        var newer = Document.GetDocument(Keys.Previous);
     }
     @if (older != null || newer != null)
     {

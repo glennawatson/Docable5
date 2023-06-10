@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
     Layout = "/_Layout.cshtml";
 }
@@ -10,15 +11,15 @@
 
 @section Breadcrumbs {
 	@{
-		List<IDocument> containingTypes = new List<IDocument>();
-		IDocument containingType = Document.GetDocument(CodeAnalysisKeys.ContainingType);
+		var containingTypes = new List<IDocument>();
+		var containingType = Document.GetDocument(CodeAnalysisKeys.ContainingType);
 		while (containingType != null)
 		{
 			containingTypes.Add(containingType);
 			containingType = containingType.GetDocument(CodeAnalysisKeys.ContainingType);
 		}
 		containingTypes.Reverse();
-		foreach (IDocument reverseContainingType in containingTypes)
+		foreach (var reverseContainingType in containingTypes)
 		{
 			<span>@Context.GetTypeLink(reverseContainingType).</span>
 		}

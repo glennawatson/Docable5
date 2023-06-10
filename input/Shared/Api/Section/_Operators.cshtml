@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> operators = Document.GetDocumentList(CodeAnalysisKeys.Operators)
 		.OrderBy(x => x.GetString(CodeAnalysisKeys.DisplayName))
@@ -16,7 +17,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(IDocument op in operators)
+					@foreach(var op in operators)
 					{
 						<tr>
 							<td>@Context.GetTypeLink(op, false)</td>
@@ -24,7 +25,7 @@
 							<td>
 								<div>@Html.Raw(op.GetString(CodeAnalysisKeys.Summary))</div>
 								@{
-									IDocument containingType = op.GetDocument(CodeAnalysisKeys.ContainingType);
+									var containingType = op.GetDocument(CodeAnalysisKeys.ContainingType);
 									if(!Document.IdEquals(containingType))
 									{
 										<div><small><em>Inherited from @Context.GetTypeLink(containingType)</em></small></div>

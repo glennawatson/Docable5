@@ -1,5 +1,6 @@
+@inherits StatiqRazorPage<IDocument>
 @{
-	string syntax = Document.GetString(CodeAnalysisKeys.Syntax);
+	var syntax = Document.GetString(CodeAnalysisKeys.Syntax);
 	if (!syntax.IsNullOrWhiteSpace())
 	{
 		((List<(string, string)>)ViewData[Keys.Headings]).Add(("Syntax", "Syntax"));

@@ -1,6 +1,7 @@
+@inherits StatiqRazorPage<IDocument>
 @{
-	IDocument containingAssembly = Document.GetDocument(CodeAnalysisKeys.ContainingAssembly);
-	IDocument containingNamespace = Document.GetDocument(CodeAnalysisKeys.ContainingNamespace);
+	var containingAssembly = Document.GetDocument(CodeAnalysisKeys.ContainingAssembly);
+	var containingNamespace = Document.GetDocument(CodeAnalysisKeys.ContainingNamespace);
 	if (containingAssembly != null || containingNamespace != null)
 	{
 		<div class="sidebar-root mb-3 page-box font-size-sm">
@@ -27,9 +28,9 @@
 		{
 			<div class="sidebar-nav-item sidebar-header">@typeGroup.Key Types</div>
 			<div class="sidebar-nav-children">
-				@foreach(IDocument type in typeGroup.OrderBy(x => x.GetString(CodeAnalysisKeys.Name)))
+				@foreach(var type in typeGroup.OrderBy(x => x.GetString(CodeAnalysisKeys.Name)))
 				{
-					string activeClass = type.GetString(CodeAnalysisKeys.SymbolId) == Document.GetString(CodeAnalysisKeys.SymbolId) ? "active" : null;
+					var activeClass = type.GetString(CodeAnalysisKeys.SymbolId) == Document.GetString(CodeAnalysisKeys.SymbolId) ? "active" : null;
 					<div class="sidebar-nav-item @activeClass">@Context.GetTypeLink(type, false)</div>
 				}
 			</div>

@@ -1,7 +1,8 @@
+@inherits StatiqRazorPage<IDocument>
 <nav class="navbar navbar-expand-md navbar-light align-items-start">
     <a class="navbar-brand" href="@Context.GetLink("/")">
         @{
-            string logo = Document.GetString(SiteKeys.Logo);
+            var logo = Document.GetString(SiteKeys.Logo);
             if (!logo.IsNullOrWhiteSpace())
             {
                 <img id="logo" src="@Context.GetLink(@logo)" alt="@Document.GetString(SiteKeys.SiteTitle)">

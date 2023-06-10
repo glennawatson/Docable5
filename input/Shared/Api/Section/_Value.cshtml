@@ -1,6 +1,7 @@
+@inherits StatiqRazorPage<IDocument>
 @{
-	IDocument type = Document.GetDocument(CodeAnalysisKeys.Type);
-	string value = Document.GetString(CodeAnalysisKeys.Value);
+	var type = Document.GetDocument(CodeAnalysisKeys.Type);
+	var value = Document.GetString(CodeAnalysisKeys.Value);
 	if (type is object || !string.IsNullOrWhiteSpace(value))
 	{
 		((List<(string, string)>)ViewData[Keys.Headings]).Add(("Value", "Value"));

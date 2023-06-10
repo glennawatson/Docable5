@@ -1,9 +1,11 @@
+@inherits StatiqRazorPage<IDocument>
 @{
-    IReadOnlyList<IDocument> headings = Document
+    var headings = Document
         .GetDocumentList(Keys.Headings)
         ?.Where(x => x.GetInt(Keys.Level) == 1)
-        .ToList();
-    string editLink = Document.ContainsKey(SiteKeys.EditLink)
+        .ToList().AsReadOnly();
+
+    var editLink = Document.ContainsKey(SiteKeys.EditLink)
         ? Document.GetString(SiteKeys.EditLink)
         : (Document.ContainsKey(SiteKeys.EditRoot)
             ? Document.GetString(SiteKeys.EditRoot) + "/" + Document.Source.GetRelativeInputPath()
@@ -17,10 +19,10 @@
                 {
                     <div class="sidebar-nav-item"><a href="#@(heading.GetString(Keys.HeadingId))">@(await heading.GetContentStringAsync())</a></div>
 
-                    IReadOnlyList<IDocument> childHeadings = heading
-                        .GetDocumentList(Keys.Children)
-                        ?.Where(x => x.GetInt(Keys.Level) == 2)
-                        .ToList();
+                    var childHeadings = heading
+                    .GetDocumentList(Keys.Children)
+                    ?.Where(x => x.GetInt(Keys.Level) == 2)
+                    .ToList().AsReadOnly();
                     if (childHeadings?.Count > 0)
                     {
                         <div class="sidebar-nav-children">

@@ -7,15 +7,16 @@ Title: API
 Order: => GetInt("ApiOrder")
 Xref: api
 ---
+@inherits StatiqRazorPage<IDocument>
 <h1>Namespaces</h1>
-@foreach (IDocument document in Model.GetChildren())
+@foreach (var document in Model.GetChildren())
 {
-<h3>@Context.GetTypeLink(document)</h3>
-    string summary = document.GetString(CodeAnalysisKeys.Summary);
+    <h3>@Context.GetTypeLink(document)</h3>
+    var summary = document.GetString(CodeAnalysisKeys.Summary);
     if (!summary.IsNullOrWhiteSpace())
     {
-<div>
-    @Html.Raw(summary)
-</div>
+        <div>
+            @Html.Raw(summary)
+        </div>
     }
 }

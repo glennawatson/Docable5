@@ -1,9 +1,10 @@
+@inherits StatiqRazorPage<IDocument>
 @{
-    IDocument containingAssembly = Document.GetDocument(CodeAnalysisKeys.ContainingAssembly);
-    IDocument containingNamespace = Document.GetDocument(CodeAnalysisKeys.ContainingNamespace);
-	IDocument containingType = Document.GetDocument(CodeAnalysisKeys.ContainingType);
-	IDocument type = Document.GetDocument(CodeAnalysisKeys.Type);
-	IDocument overridden = Document.GetDocument(CodeAnalysisKeys.Overridden);
+    var containingAssembly = Document.GetDocument(CodeAnalysisKeys.ContainingAssembly);
+    var containingNamespace = Document.GetDocument(CodeAnalysisKeys.ContainingNamespace);
+	var containingType = Document.GetDocument(CodeAnalysisKeys.ContainingType);
+	var type = Document.GetDocument(CodeAnalysisKeys.Type);
+	var overridden = Document.GetDocument(CodeAnalysisKeys.Overridden);
     IReadOnlyList<IDocument> allInterfaces = Document.GetDocumentList(CodeAnalysisKeys.AllInterfaces);
     IReadOnlyList<IDocument> baseTypes = Document.GetDocumentList(CodeAnalysisKeys.BaseTypes);
     IReadOnlyList<IDocument> derivedTypes = Document.GetDocumentList(CodeAnalysisKeys.DerivedTypes);
@@ -46,7 +47,7 @@
     		    <dt>Interfaces</dt>
     		    <dd>
     			    <ul class="list-unstyled">
-    				    @foreach (IDocument interfaceDocument in allInterfaces)
+    				    @foreach (var interfaceDocument in allInterfaces)
     				    {
     					    <li>@Context.GetTypeLink(interfaceDocument)</li>
     				    }
@@ -59,7 +60,7 @@
     		    <dt>Base Types</dt>
     		    <dd>
     			    <ul class="list-unstyled">
-    				    @foreach (IDocument baseType in baseTypes.Reverse())
+    				    @foreach (var baseType in baseTypes.Reverse())
     				    {
     					    <li>@Context.GetTypeLink(baseType)</li>
     				    }
@@ -72,7 +73,7 @@
     		    <dt>Derived Types</dt>
     		    <dd>
     			    <ul class="list-unstyled">
-    				    @foreach (IDocument derivedType in derivedTypes)
+    				    @foreach (var derivedType in derivedTypes)
     				    {
     					    <li>@Context.GetTypeLink(derivedType)</li>
     				    }
@@ -85,9 +86,9 @@
     		    <dt>Implements</dt>
     		    <dd>
     			    <ul class="list-unstyled">
-    				    @foreach (IDocument implementsDocument in implements)
+    				    @foreach (var implementsDocument in implements)
 				        {
-					        IDocument implementsContainingTypeDocument = implementsDocument.GetDocument(CodeAnalysisKeys.ContainingType);
+					        var implementsContainingTypeDocument = implementsDocument.GetDocument(CodeAnalysisKeys.ContainingType);
     					    <li>@Context.GetTypeLink(implementsContainingTypeDocument).@Context.GetTypeLink(implementsDocument)</li>
     				    }
     			    </ul>
@@ -99,7 +100,7 @@
     		    <dt>Implementing Types</dt>
     		    <dd>
     			    <ul class="list-unstyled">
-    				    @foreach (IDocument implementingType in implementingTypes)
+    				    @foreach (var implementingType in implementingTypes)
     				    {
     					    <li>@Context.GetTypeLink(implementingType)</li>
     				    }

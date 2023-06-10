@@ -1,5 +1,6 @@
+@inherits StatiqRazorPage<IDocument>
 @{
-	string remarks = Document.GetString(CodeAnalysisKeys.Remarks);
+	var remarks = Document.GetString(CodeAnalysisKeys.Remarks);
 	if (!remarks.IsNullOrWhiteSpace())
 	{
 		((List<(string, string)>)ViewData[Keys.Headings]).Add(("Remarks", "Remarks"));

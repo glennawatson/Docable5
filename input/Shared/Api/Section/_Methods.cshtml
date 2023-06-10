@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> methods = Document.GetDocumentList(CodeAnalysisKeys.Members)
 		?.Where(x => x.GetBool(CodeAnalysisKeys.IsResult) && x.GetString(CodeAnalysisKeys.Kind) == "Method")
@@ -17,7 +18,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(IDocument method in methods)
+					@foreach(var method in methods)
 					{
 						<tr>
 							<td>@Context.GetTypeLink(method, false)</td>
@@ -25,7 +26,7 @@
 							<td>
 								<div>@Html.Raw(method.GetString(CodeAnalysisKeys.Summary))</div>
 								@{
-									IDocument containingType = method.GetDocument(CodeAnalysisKeys.ContainingType);
+									var containingType = method.GetDocument(CodeAnalysisKeys.ContainingType);
 									if(!Document.IdEquals(containingType))
 									{
 										<div><small><em>Inherited from @Context.GetTypeLink(containingType)</em></small></div>

@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> events = Document.GetDocumentList(CodeAnalysisKeys.Members)
 		?.Where(x => x.GetBool(CodeAnalysisKeys.IsResult) && x.GetString(CodeAnalysisKeys.Kind) == "Event")
@@ -17,7 +18,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(IDocument evt in events)
+					@foreach(var evt in events)
 					{
 						<tr>
 							<td>@Context.GetTypeLink(evt, false)</td>
