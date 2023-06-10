@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(IDocument doc in Model.Documents)
+                        @foreach(var doc in Model.Documents)
                         {
                             <tr>
                                 <td>@Context.GetTypeLink(doc, Model.LinkTypeArguments)</td>

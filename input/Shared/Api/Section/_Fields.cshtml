@@ -20,7 +20,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(IDocument field in fields)
+					@foreach(var field in fields)
 					{
 						<tr>
 							<td>@Context.GetTypeLink(field, false)</td>

@@ -1,7 +1,7 @@
 @using Microsoft.CodeAnalysis;
 
 @{
-	ITypeSymbol modelSymbol = Document.Get<ITypeSymbol>(CodeAnalysisKeys.Symbol);
+	var modelSymbol = Document.Get<ITypeSymbol>(CodeAnalysisKeys.Symbol);
 	IReadOnlyList<IDocument> methods = Document.GetDocumentList(CodeAnalysisKeys.ExtensionMethods)
 		?.Where(x => x.GetBool(CodeAnalysisKeys.IsResult))
 		.OrderBy(x => x.GetString(CodeAnalysisKeys.DisplayName))
@@ -20,10 +20,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(IDocument method in methods)
+					@foreach(var method in methods)
 					{
 						ISymbol reducedSymbol = method.Get<IMethodSymbol>(CodeAnalysisKeys.Symbol)?.ReduceExtensionMethod(modelSymbol);
-						string reducedName = reducedSymbol?.ToDisplayString(new SymbolDisplayFormat(
+						var reducedName = reducedSymbol?.ToDisplayString(new SymbolDisplayFormat(
 							typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypes,
 							genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
 							parameterOptions: SymbolDisplayParameterOptions.IncludeType,

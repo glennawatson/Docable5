@@ -11,7 +11,7 @@ Xref: api
 @foreach (var document in Model.GetChildren())
 {
     <h3>@Context.GetTypeLink(document)</h3>
-    string summary = document.GetString(CodeAnalysisKeys.Summary);
+    var summary = document.GetString(CodeAnalysisKeys.Summary);
     if (!summary.IsNullOrWhiteSpace())
     {
         <div>
