@@ -15,7 +15,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach (IDocument parameter in parameters)
+					@foreach (var parameter in parameters)
 					{
 						<tr>
 							<td>@parameter.GetString(CodeAnalysisKeys.Name)</td>

@@ -9,7 +9,7 @@
 				.ToList();
 		foreach(Tuple<string, IDocument> ns in namespaces)
 		{
-			string activeClass = Document.GetString(CodeAnalysisKeys.Kind) == "Namespace"
+			var activeClass = Document.GetString(CodeAnalysisKeys.Kind) == "Namespace"
 				&& Document.GetString(CodeAnalysisKeys.DisplayName) == ns.Item1
 				? "active"
 				: null;

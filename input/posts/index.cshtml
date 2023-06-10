@@ -13,14 +13,13 @@ ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"posts/index.html" : $"posts/page/{GetInt("Index")}.html"
 ArchiveTitle: => GetString("Title")
 ---
-        @model IDocument
 @foreach (IGrouping<(int, string), IDocument> group in Model
                                                  .GetChildren()
                                                  .GroupBy(x => (x.GetDateTime(WebKeys.Published).Year, x.GetString("Tags")))
                                                  .OrderByDescending(x => x.Key.Item1).ThenBy(y => y.Key.Item2))
         {
     <h1 class="p-2">@group.Key.Item1 - @group.Key.Item2</h1>
-            foreach (IDocument post in group)
+            foreach (var post in group)
             {
         <div>
                     @if (post.GetBool("ShowFullBlog"))
@@ -36,8 +35,8 @@ ArchiveTitle: => GetString("Title")
         }
 
         @{
-            IDocument newer = Model.GetDocument(Keys.Previous);
-            IDocument older = Model.GetDocument(Keys.Next);
+            var newer = Model.GetDocument(Keys.Previous);
+            var older = Model.GetDocument(Keys.Next);
         }
         @if (older != null || newer != null)
         {

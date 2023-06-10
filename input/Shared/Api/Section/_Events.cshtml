@@ -17,7 +17,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(IDocument evt in events)
+					@foreach(var evt in events)
 					{
 						<tr>
 							<td>@Context.GetTypeLink(evt, false)</td>

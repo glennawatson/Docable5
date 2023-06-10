@@ -11,7 +11,7 @@
 
     <link href="@Context.GetLink("/assets/bootstrap/bootstrap.css")" rel="stylesheet" />
     @{
-        string fontLink = Document.GetString(SiteKeys.FontLink);
+        var fontLink = Document.GetString(SiteKeys.FontLink);
         if (!fontLink.IsNullOrWhiteSpace())
         {
         <link href="@Html.Raw(fontLink)" rel="stylesheet" data-no-mirror>
@@ -34,7 +34,7 @@
     @await Html.PartialAsync("_Head")
 
     @{
-        string title = @Document.ContainsKey(Keys.Title)
+        var title = @Document.ContainsKey(Keys.Title)
         ? $"{Document.GetString(SiteKeys.SiteTitle)} - {Document.GetString(Keys.Title)}"
         : Document.GetString(SiteKeys.SiteTitle);
     }

@@ -1,5 +1,5 @@
 @{
-	string examples = Document.GetString(CodeAnalysisKeys.Example);
+	var examples = Document.GetString(CodeAnalysisKeys.Example);
 	if (!examples.IsNullOrWhiteSpace())
 	{
 		((List<(string, string)>)ViewData[Keys.Headings]).Add(("Examples", "Examples"));
