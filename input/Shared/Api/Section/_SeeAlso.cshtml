@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<string> seeAlso = Document.GetList<string>(CodeAnalysisKeys.SeeAlso);
 	if (seeAlso?.Count > 0)

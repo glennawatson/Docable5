@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> methods = Document.GetDocumentList(CodeAnalysisKeys.Members)
 		?.Where(x => x.GetBool(CodeAnalysisKeys.IsResult) && x.GetString(CodeAnalysisKeys.Kind) == "Method")

@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	var remarks = Document.GetString(CodeAnalysisKeys.Remarks);
 	if (!remarks.IsNullOrWhiteSpace())

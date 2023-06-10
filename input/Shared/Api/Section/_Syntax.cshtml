@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	var syntax = Document.GetString(CodeAnalysisKeys.Syntax);
 	if (!syntax.IsNullOrWhiteSpace())

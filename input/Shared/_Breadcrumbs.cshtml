@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @* The root page of this section is passed in as the model *@
 
 @foreach (var parent in OutputPages.GetAncestorsOf(Document, Document.IdEquals(Model)).Reverse().Skip(1))

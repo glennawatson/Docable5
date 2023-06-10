@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> attributes = Document.GetDocumentList(CodeAnalysisKeys.Attributes);
 	if (attributes?.Count > 0)

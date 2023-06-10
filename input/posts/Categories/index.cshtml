@@ -13,6 +13,7 @@ ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"posts/index.html" : $"posts/page/{GetInt("Index")}.html"
 ArchiveTitle: => GetString("Title")
 ---
+        @inherits StatiqRazorPage<IDocument>
 @{
             foreach (var doc in Model
                 .GetChildren()

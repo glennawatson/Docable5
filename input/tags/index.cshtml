@@ -12,6 +12,7 @@ ArchiveOrderKey: Published
 ArchiveOrderDescending: true
 ArchiveTitle: => GetString("GroupKey")
 ---
+    @inherits StatiqRazorPage<IDocument>
 @if (Document.ContainsKey(Keys.GroupKey))
 {
   <div class="container-sm-height">

@@ -13,6 +13,7 @@ ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"posts/index.html" : $"posts/page/{GetInt("Index")}.html"
 ArchiveTitle: => GetString("Title")
 ---
+        @inherits StatiqRazorPage<IDocument>
 @{
             foreach (var doc in Model
                 .GetChildren()
@@ -20,16 +21,16 @@ ArchiveTitle: => GetString("Title")
                 .OrderBy(x => x.GetString("Author"))
                 .ThenByDescending(x => x.GetString(WebKeys.Published)))
             {
-    <div>
-        @if (doc.GetBool("ShowFullBlog"))
+        <div>
+                    @if (doc.GetBool("ShowFullBlog"))
                     {
-        @await Html.PartialAsync("_postFull", doc)
+                        @await Html.PartialAsync("_postFull", doc)
                     }
                     else
                     {
-        @await Html.PartialAsync("_post", doc)
+                        @await Html.PartialAsync("_post", doc)
                     }
-    </div>
+        </div>
             }
 
 
@@ -38,20 +39,20 @@ ArchiveTitle: => GetString("Title")
 
             if (older != null || newer != null)
             {
-    <div>
-        <div class="float-sm-start">
-            @if (newer != null)
+        <div>
+            <div class="float-sm-start">
+                        @if (newer != null)
                         {
-            <a class="btn btn-primary" href="@Context.GetLink(newer)" role="button"><i class="fas fa-angle-double-left"></i> Newer</a>
+                    <a class="btn btn-primary" href="@Context.GetLink(newer)" role="button"><i class="fas fa-angle-double-left"></i> Newer</a>
                         }
-        </div>
-        <div class="float-sm-end">
-            @if (older != null)
+            </div>
+            <div class="float-sm-end">
+                        @if (older != null)
                         {
-            <a class="btn btn-primary" href="@Context.GetLink(older)" role="button">Older <i class="fas fa-angle-double-right"></i></a>
+                    <a class="btn btn-primary" href="@Context.GetLink(older)" role="button">Older <i class="fas fa-angle-double-right"></i></a>
                         }
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
-    </div>
             }
-}
+        }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inherits StatiqRazorPage<IDocument>
+<!DOCTYPE html>
 <html data-bs-theme="auto">
 @{
   var isPost = Document.GetBool("IsPost") && !Document.GetBool("IsPostArchive");

@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> parameters = Document.GetDocumentList(CodeAnalysisKeys.Parameters);
 	IReadOnlyList<ReferenceComment> paramComments = Document.GetList<ReferenceComment>(CodeAnalysisKeys.Params);
