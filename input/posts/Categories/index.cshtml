@@ -15,8 +15,7 @@ ArchiveTitle: => GetString("Title")
 ---
         @inherits StatiqRazorPage<IDocument>
 @{
-            foreach (var doc in Model
-                .GetChildren()
+            foreach (var doc in OutputPages
                 .Where(x => x.GetBool(SiteKeys.IsBlog) && x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey("Tags"))
                 .OrderBy(x => x.GetString("Tags"))
                 .ThenByDescending(x => x.GetString(WebKeys.Published)))
