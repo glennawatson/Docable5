@@ -1,5 +1,6 @@
 @* The root page of this section is passed in as the model *@
 
+@inherits StatiqRazorPage<IDocument>
 <div class="sidebar-root">
     @{
         if (OutputPages.GetChildrenOf(Model).Any(x => x.ContainsKey("Tags")))

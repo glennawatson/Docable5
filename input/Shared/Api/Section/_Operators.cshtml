@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> operators = Document.GetDocumentList(CodeAnalysisKeys.Operators)
 		.OrderBy(x => x.GetString(CodeAnalysisKeys.DisplayName))

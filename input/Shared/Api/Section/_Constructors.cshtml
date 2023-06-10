@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @await Html.PartialAsync("Api/Section/_DocumentTable", new DocumentTable()
 {
 	Documents = Document.GetDocumentList(CodeAnalysisKeys.Constructors)

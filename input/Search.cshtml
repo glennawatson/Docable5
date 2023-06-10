@@ -2,6 +2,7 @@ HideFromSearchIndex: true
 Excluded: => !Context.GetBool(WebKeys.GenerateSearchIndex)
 ShowInNavigation: false
 ---
+@inherits StatiqRazorPage<IDocument>
 <form>
     <div class="form-group">
         <label for="search">Search Query</label>

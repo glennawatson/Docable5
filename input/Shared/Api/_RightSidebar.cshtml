@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
     var headings = (List<(string, string)>)ViewData[Keys.Headings];
     if (headings?.Count > 0)

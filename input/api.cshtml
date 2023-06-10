@@ -7,6 +7,7 @@ Title: API
 Order: => GetInt("ApiOrder")
 Xref: api
 ---
+@inherits StatiqRazorPage<IDocument>
 <h1>Namespaces</h1>
 @foreach (var document in Model.GetChildren())
 {

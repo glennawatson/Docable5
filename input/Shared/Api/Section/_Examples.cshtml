@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	var examples = Document.GetString(CodeAnalysisKeys.Example);
 	if (!examples.IsNullOrWhiteSpace())

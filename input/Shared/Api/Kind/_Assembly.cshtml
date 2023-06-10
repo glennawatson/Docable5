@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @foreach(IGrouping<string, IDocument> typeGroup
     in Outputs.FromPipeline(nameof(Statiq.Docs.Pipelines.Api))
         .Where(x => x.GetBool(CodeAnalysisKeys.IsResult)

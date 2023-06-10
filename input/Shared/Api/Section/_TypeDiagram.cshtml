@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
 	IReadOnlyList<IDocument> allInterfaces = Document.GetDocumentList(CodeAnalysisKeys.AllInterfaces);
 	IReadOnlyList<IDocument> baseTypes = Document.GetDocumentList(CodeAnalysisKeys.BaseTypes);

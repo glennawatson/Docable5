@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
     var summary = Document.GetString("Summary");
     if (!summary.IsNullOrWhiteSpace())

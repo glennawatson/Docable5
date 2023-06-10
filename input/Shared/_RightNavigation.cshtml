@@ -1,3 +1,4 @@
+@inherits StatiqRazorPage<IDocument>
 @{
     var indexFileName = Context.Settings.GetIndexFileName();
     foreach(var doc in OutputPages.GetChildrenOf(indexFileName)

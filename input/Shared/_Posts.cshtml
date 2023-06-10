@@ -1,4 +1,5 @@
-﻿<div>
+﻿@inherits StatiqRazorPage<IDocument>
+<div>
     @foreach (var post in Document.GetChildren())
     {
         var topicDocument = OutputPages[$"news/topics/{post.GetString("topic")}/index.html"].First();
