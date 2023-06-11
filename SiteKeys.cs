@@ -84,5 +84,35 @@
 		/// Set to <c>true</c> to set the content to show the full blog for a given page.
 		/// </summary>
 		public const string ShowFullBlog = nameof(ShowFullBlog);
+
+        /// <summary>
+        /// Set to <c>true</c> to set the content to a post for a given page.
+        /// </summary>
+        public const string IsPost = nameof(IsPost);
+
+        /// <summary>
+        /// Set to <c>true</c> to set the content to a post for a given page.
+        /// </summary>
+        public const string IsPage = nameof(IsPage);
+
+        /// <summary>
+        /// The API order an int value to order the pages.
+        /// </summary>
+        public const string ApiOrder = nameof(ApiOrder);
+
+        /// <summary>
+        /// The Post order an int value to order the pages.
+        /// </summary>
+        public const string PostOrder = nameof(PostOrder);
+
+        /// <summary>
+        /// The post title a string value to for the post title.
+        /// </summary>
+        public const string PostTitle = nameof(PostTitle);
+
+        /// <summary>
+        /// The post Source path a string value to for the post Directory.
+        /// </summary>
+        public const string PostSources = nameof(PostSources);
     }
 }
