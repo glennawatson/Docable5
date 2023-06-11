@@ -3,27 +3,22 @@
 @inherits StatiqRazorPage<IDocument>
 <div class="sidebar-root">
     @{
-        if (OutputPages.GetChildrenOf(Model).Any(x => x.ContainsKey("Tags")))
+        if (OutputPages.GetChildrenOf(Model).Any(x => x.ContainsKey(SiteKeys.Tags)))
         {
-        <h4 class="header"><i class="fa fa-bookmark"></i> Categories</h4>
+            <h4 class="header"><i class="fa fa-bookmark"></i> Categories</h4>
             var tagViews = OutputPages.GetChildrenOf(Model)
-            .Where(x => x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey("Tags"))
-            .DistinctBy(x => x.GetString("Tags"))
-            .OrderBy(x => x.GetString("Tags"));
+            .Where(x => x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey(SiteKeys.Tags))
+            .DistinctBy(x => x.GetString(SiteKeys.Tags))
+            .OrderBy(x => x.GetString(SiteKeys.Tags));
 
             foreach (IDocument doc in tagViews)
             {
-                var tags = doc.GetString("Tags");
+                var tags = doc.GetString(SiteKeys.Tags);
                 var linkText = tags.Replace(" ", "-").Replace("'", string.Empty);
-                var currentTags = tagViews.Where(x => x.GetString("Tags").Contains(tags));
-        <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
-                    @*Html.DocumentLink(
-        doc,
-        linkText,
-        doc.GetString(linkText, doc.GetTitle()),
-        new Dictionary<object, object> { { "class", (Document.IdEquals(doc) ? "active" : null) } })*@
-            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Categories?category={linkText}")">@linkText</a>
-        </div>
+                var currentTags = tagViews.Where(x => x.GetString(SiteKeys.Tags).Contains(tags));
+                <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
+                    <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Categories?category={linkText}")">@linkText</a>
+                </div>
             }
         }
 
@@ -44,27 +39,27 @@
         {
             var linkText = doc.GetDateTime(WebKeys.Published).ToString("MMMM,yyyy");
             var currentPublished = publishedViews.Where(x => x.GetDateTime(WebKeys.Published).ToString("MMMM,yyyy").Contains(linkText));
-        <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
-            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Archive?archive={linkText}")">@linkText</a>
-        </div>
+            <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
+                <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Archive?archive={linkText}")">@linkText</a>
+            </div>
         }
 
-        if (OutputPages.GetChildrenOf(Model).Any(x => x.ContainsKey("Author")))
+        if (OutputPages.GetChildrenOf(Model).Any(x => x.ContainsKey(WebKeys.Author)))
         {
-        <h4 class="header"><i class="fa fa-user"></i> Authors</h4>
+            <h4 class="header"><i class="fa fa-user"></i> Authors</h4>
             var authorViews = OutputPages.GetChildrenOf(Model)
-            .Where(x => x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey("Author"));
+            .Where(x => x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey(WebKeys.Author));
 
             foreach (var doc in authorViews
-            .DistinctBy(x => x.GetString("Author"))
-            .OrderBy(x => x.GetString("Author")))
+            .DistinctBy(x => x.GetString(WebKeys.Author))
+            .OrderBy(x => x.GetString(WebKeys.Author)))
             {
-                var author = doc.GetString("Author");
+                var author = doc.GetString(WebKeys.Author);
                 var linkText = author.Replace(" ", "-").Replace("'", string.Empty);
-                var currentAuthor = authorViews.Where(x => x.GetString("Author").Contains(author));
-        <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
-            <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Authors?author={linkText}")">@linkText</a>
-        </div>
+                var currentAuthor = authorViews.Where(x => x.GetString(WebKeys.Author).Contains(author));
+                <div class="sidebar-nav-item @(Document.IdEquals(doc) ? "active" : null)">
+                    <a class="@(Document.IdEquals(doc) ? "active" : null)" href="@Context.GetLink($"/posts/Authors?author={linkText}")">@linkText</a>
+                </div>
             }
         }
     }
