@@ -13,7 +13,8 @@ ArchiveDestination: >
   => GetInt("Index") <= 1 ? $"posts/index.html" : $"posts/page/{GetInt("Index")}.html"
 ArchiveTitle: => GetString("Title")
 ---
-        @inherits StatiqRazorPage<IDocument>
+@inherits StatiqRazorPage<IDocument>
+@model IDocument
 @{
             foreach (var doc in OutputPages
                 .Where(x => x.GetBool(SiteKeys.IsBlog) && x.GetBool(SiteKeys.ShowInSidebar, true) && !x.ContainsKey(Keys.RedirectTo) && x.ContainsKey(WebKeys.Author))
